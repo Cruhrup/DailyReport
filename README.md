@@ -1,31 +1,16 @@
 # DailyReport
-A daily report python script for work that gathers details from Palo Alto firewalls, Panorama, and Okta agents
-
-#### Dependencies
-+ panos sdk - pip install pan-os-python
-
-+ okta sdk - pip install okta
-
-+ BS4 - pip install beautifulsoup4
-
-+ html5lib - pip install html5lib
-
-+ requests - pip install requests
-
-+ selenium - pip install selenium
-
-+ Chrome Driver (Tested with Version 108.0.5359.71) - https://chromedriver.storage.googleapis.com/index.html?path=108.0.5359.71/
-
-+ Tested on Python 3.9.13 with Windows 10 21H2 19044.2364
+A daily report Dockerized Python script for work that gathers details from Palo Alto firewalls, Panorama, and Okta agents then emails that report via Outlook.
 
 #### Setup
-1. Download both the .py files in the repository
+1. Download all files in repository to get started
 
-2. Generate API keys for your firewalls as well as Panorama using the below link:
+2. Generate API keys for your firewalls as well as Panorama using the link:
 https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-panorama-api/get-started-with-the-pan-os-xml-api/get-your-api-key
 
-3. Generate an API key for your Okta org using the below link:
+3. Generate an API key for your Okta org using the link:
 https://developer.okta.com/docs/guides/create-an-api-token/main/
+
+4. Per https://github.com/O365/python-o365#authentication-steps, you need to create a custom application registration inside Azure. For this specific implementation, we are using authentication method "on behalf of a user". During this, notate the Application (Client) ID, Client Secret value, and Directory (Tenant) ID as used in Devicelist.py
 
 ##### Setup - Devicelist.py
 1. On section `Firewalls`, replace `FW_IP_HERE` with your firewall IP and `MY_API_KEY_HERE` with your firewall API key
@@ -40,9 +25,15 @@ https://developer.okta.com/docs/guides/create-an-api-token/main/
 
 6. On section `Device list to run script on`, add or remove the variables you just created in steps 1-5 to their appropriate list
 
-7. Done! To run, open command prompt, navigate to the folder of the script, and execute `python3 Daily_Report.py > Daily_Report.txt`
+7. On section `EMAILER`, replace `Application(Client)_ID_HERE` and `Client_Secret_Value_HERE` with the values obtained during the Azure app registry step during step 4 of Setup
 
-#### Example Output
+8. On section `EMAILER`, replace `TENANT_ID_HERE` with the value obtained during the Azure app registry step during step 4 of Setup
+
+9. In order to obtain the oauth token for O365 communication, you will need to first generate an authentication request. In order to do so, uncomment the `if account.authenticate` statement then run this by doing `python3 Devicelist.py`. Once done, you should see a token called `o365_token.txt` appear in your working directory. This token will then be passed to Docker during the imagine build process (See Dockerfile) for authentication to the O365 API
+
+10. Done! To run, open command prompt, navigate to the folder of the repository, and execute `docker build -t daily_report .` to build the Docker image from the Dockerfile. Lastly, run `docker run -dp 3000:3000 daily_report` which will start the container build process with this image. Once the script is done executing, you will receive an email with the results and the Docker container will exit
+
+#### Example Daily_Report Output
 
 <details><summary>Daily_Report.txt</summary>
 <p>
@@ -163,10 +154,8 @@ Execution Time:  29 seconds
 
 #### Future Feature List
 
-- [ ] Fix Devicelist.py API key hardcoding
-
-- [ ] Docker containerization
+- [x] Docker containerization
 
 - [ ] Output in .csv or different format for easier readability
 
-- [ ] Implement emailer for automatic emailing of results
+- [x] Implement emailer for automatic emailing of results
