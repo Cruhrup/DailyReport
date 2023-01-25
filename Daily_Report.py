@@ -11,7 +11,7 @@ import xkcd
 import Devices
 
 # Open file and write
-f = open("DailyReport.txt", "w")
+f = open("Daily_Report.txt", "w")
 
 # Time conversion
 def timeconvert(n):
@@ -325,7 +325,7 @@ try:
     m.subject = sub
     m.body = bod
     # Files must be in working dir
-    m.attachments.add(['DailyReport.txt',
+    m.attachments.add(['Daily_Report.txt',
         "xkcd.png"])
     m.send()
 except:
