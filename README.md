@@ -152,10 +152,6 @@ Execution Time:  29 seconds
 </p>
 </details>
 
-#### Future Feature List
+#### Grafana Implementation
 
-- [x] Docker containerization
-
-- [ ] Output in .csv or different format for easier readability
-
-- [x] Implement emailer for automatic emailing of results
+To view the Grafana installation version as well as instructions, please see the Grafana folder
