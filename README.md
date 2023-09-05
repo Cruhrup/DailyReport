@@ -1,5 +1,5 @@
 # DailyReport
-A daily report Dockerized Python script for work that gathers details from Palo Alto firewalls, Panorama, and Okta agents then emails that report via Outlook.
+A daily report Dockerized Python script that gathers details from Palo Alto firewalls, Panorama, and Okta agents then emails that report via Outlook.
 
 #### Setup
 1. Download all files in repository to get started
