@@ -154,4 +154,4 @@ Execution Time:  29 seconds
 
 #### Grafana Implementation
 
-To view the Grafana installation version as well as instructions, please see the Grafana folder
+To view the Grafana installation version as well as instructions, please see the [Grafana](https://github.com/Cruhrup/DailyReport/tree/main/Grafana) folder
