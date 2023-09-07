@@ -5,5 +5,5 @@
 
 Installation instructions
 1. Set up a TIG (Telegraf InfluxDB Grafana) environment
-2. Follow [this] (https://github.com/vbarahona/Panos2Grafana) guide to set up SNMP queries to the firewalls via Telegraf as well as the dashboard for Grafana
+2. Follow [this](https://github.com/vbarahona/Panos2Grafana) guide to set up SNMP queries to the firewalls via Telegraf as well as the dashboard for Grafana
 3. 
